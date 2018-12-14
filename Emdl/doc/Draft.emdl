@@ -1,0 +1,102 @@
+﻿
+
+// global variables
+dec number: MyNumber;
+dec string: MyString;
+
+// global function
+void Start () {
+
+}
+
+void Tick () {
+
+}
+
+
+// container, class like...
+container MyContext {
+
+}
+
+dec MyContext: MyContextInstance;
+
+
+
+// new aproache:
+
+
+all code follows simple convention
+
+<command> <arguments> ; 
+
+or
+
+<command> <arguments> { 
+	<body>
+};
+
+an exception to this convention is comments and primitive commands
+
+#this is a comment
+
+this is a primitive command, it always needs to be on one line 
+/execute as @e run say Hello World
+
+example:
+
+dec number MyNumber;
+
+func MyFunction {
+	dec string myLocalString;
+
+	init MyCustomObj myinstance 10 "Hello World";
+
+	myinstance.xv = 20;
+
+	/say hello
+
+	if myinstance.xv < 50 {
+		/teleport 42 34 10
+	}
+
+}
+
+objdef MyCustomObj {
+
+	dec number xv;
+	dec number yv;
+
+	params {
+		number;
+		string;
+	}
+
+	func MyLocalFunc {
+				
+	}
+}
+
+
+-- new Doc:
+
+
+Start {
+	call NameOfFunction;
+}
+
+Update {
+	if <score> == <score> {
+	
+	}
+}
+
+
+func NameOfFunction {
+	# this is a comment
+	# the following is a primitive call:
+	/say Hello World
+}
+
+
+

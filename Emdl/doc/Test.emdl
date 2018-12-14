@@ -1,0 +1,9 @@
+﻿
+
+func MyTestFunc {
+	call MySecondFunc
+}
+
+func MySecondFunc {
+
+}
