@@ -43,13 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compiler\CommandInstance.cs" />
-    <Compile Include="Compiler\DefinitionLibrary.cs" />
-    <Compile Include="Compiler\Definitions\CallCommand.cs" />
-    <Compile Include="Compiler\Definitions\CommandDefinition.cs" />
-    <Compile Include="Compiler\Definitions\FunctionCommand.cs" />
     <Compile Include="EmdlFile.cs" />
     <Compile Include="EmdlProject.cs" />
+    <Compile Include="McFunctionFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelper.cs" />

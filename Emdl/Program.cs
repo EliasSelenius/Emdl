@@ -10,21 +10,32 @@ using System.Threading.Tasks;
 
 namespace Emdl {
     class Program {
+
+        public static EmdlProject Project;
+
         static void Main(string[] args) {
-            //EmdlProject proj = EmdlProject.InitNewProjectAt("MyFirstProject", @"D:\Documents\repos\EmdlProjects\");
 
-            EmdlFile file = EmdlFile.Load(@"D:\Documents\repos\EmdlProjects\MyFirstProject\Main.emdl");
+            
+            //EmdlFile file = EmdlFile.Load(@"D:\Documents\repos\EmdlProjects\MyFirstProject\Main.emdl");
 
+            foreach (var arg in args) {
+                ValidateArg(arg);
+            }
             
         }
 
+
         static void ValidateArg(string arg) {
             switch (arg) {
-                case "new":
+                case "init":
                     Console.WriteLine("Creating new Emdl project");
+                    Project = EmdlProject.InitNew();
                     break;
                 case "build":
                     Console.WriteLine("building project");
+
+                    Project = EmdlProject.Load();
+                    Project.Build();
                     break;
                 default:
                     Console.WriteLine($"{arg} not recognized");

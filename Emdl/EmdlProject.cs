@@ -9,48 +9,50 @@ using System.IO;
 namespace Emdl {
     class EmdlProject {
 
-        public string Name;
-        public string Description;
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public DirectoryInfo OutputDir { get; private set; }
+        public DirectoryInfo RootDir { get; private set; }
 
-        public string Path;
 
-        private List<EmdlFile> emdlFiles;
+        private EmdlProject(string name, string desc, string rootdir, string outdir) {
 
-        public static EmdlProject InitNewProjectAt(string name, string path) {
-            EmdlProject emdlProject = new EmdlProject {
-                Name = name,
-                Path = path
-            };
+            Name = name;
+            Description = desc;
 
-            string projectPath = path + name;
-            var projectDir = System.IO.Directory.CreateDirectory(projectPath);
-
-            string configPath = projectPath + @"\emdlconfig.json";
-            File.WriteAllText(configPath, emdlProject.ToJson());
-
-            return emdlProject;
+            RootDir = new DirectoryInfo(rootdir);
+            OutputDir = new DirectoryInfo(outdir);
         }
 
-        public static EmdlProject FromFile(string path) {
-            EmdlProject emdlProject = new EmdlProject();
+        public static EmdlProject InitNew() {
 
-            return emdlProject;
+
+            var proj = new EmdlProject("", "", Directory.GetCurrentDirectory(), Directory.GetCurrentDirectory() + "\\output\\");
+
+            File.WriteAllLines("emdlconfig.json", new[] { proj.ToJson() });
+
+
+            return proj;
         }
 
-
-        public string ToJson() {
-            return
-                "{" +
-                $"\"project\": \"{Name}\"" +
-                "}";
+        private string ToJson() {
+            return "{\"msg\": \"Work In progress\"}";
         }
 
-        public void Load() {
-            
+        public static EmdlProject Load() {
+            return new EmdlProject("", "", Directory.GetCurrentDirectory(), Directory.GetCurrentDirectory() + "\\output\\");
+
         }
 
         public void Build() {
+            OutputDir.CreateSubdirectory("data");
+
+            foreach(var file in RootDir.EnumerateFiles("*.emdl")) {
+                new EmdlFile(file).Build();
+            }
 
         }
+
+      
     }
 }
